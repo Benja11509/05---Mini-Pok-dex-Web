@@ -1,38 +1,86 @@
-.App {
-  text-align: center;
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f4f6fb;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* CONTENEDOR GENERAL */
+.app {
+  display: flex;
+  height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* PANEL IZQUIERDO */
+.pokedex-panel {
+  width: 35%;
+  background: #ffd6d6;
+  padding: 20px;
+  box-shadow: 4px 0 10px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* TITULO */
+.pokedex-panel h1 {
+  text-align: center;
+  color: #444;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* PANTALLA */
+.screen {
+  margin-top: 15px;
+  background: #eaffea;
+  border-radius: 15px;
+  padding: 20px;
+  flex-grow: 1;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* PANEL DERECHO */
+.list-panel {
+  width: 65%;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* GRID DE POKEMONES */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 15px;
+}
+
+/* CARD LISTA */
+.pokemon-item {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  transition: transform 0.2s;
+}
+
+.pokemon-item:hover {
+  transform: scale(1.05);
+}
+
+/* INPUT */
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 10px;
+  margin-left: 5px;
+  border: none;
+  border-radius: 10px;
+  background: #a0c4ff;
+  cursor: pointer;
+}
+
+/* IMAGEN */
+img {
+  width: 100px;
 }

@@ -1,0 +1,31 @@
+import { useState } from "react";
+
+function SearchBar({ onSearch }) {
+  const [input, setInput] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (input.trim() === "") {
+      alert("Escribí algo");
+      return;
+    }
+
+    onSearch(input.toLowerCase());
+    setInput("");
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Nombre o ID"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      />
+      <button type="submit">Buscar</button>
+    </form>
+  );
+}
+
+export default SearchBar;
