@@ -7,7 +7,6 @@ function SearchBar({ onSearch }) {
     e.preventDefault();
 
     if (input.trim() === "") {
-      alert("Escribí algo");
       return;
     }
 

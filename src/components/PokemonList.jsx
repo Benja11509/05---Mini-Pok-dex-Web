@@ -1,31 +1,55 @@
 import { useEffect, useState } from "react";
-import { getPokemonList, getPokemon } from "../services/api";
-
+import "./PokemonList.css";
 function PokemonList() {
-  const [pokemons, setPokemons] = useState([]);
+  const [list, setList] = useState([]);
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
     const fetchList = async () => {
-      const data = await getPokemonList(40); // MÁS pokemones
+      try {
+        const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=30");
+        const data = await res.json();
 
-      const detailed = await Promise.all(
-        data.results.map(p => getPokemon(p.name))
-      );
+        const detailed = await Promise.all(
+          data.results.map(async (p) => {
+            const res = await fetch(p.url);
+            return await res.json();
+          })
+        );
 
-      setPokemons(detailed);
+        setList(detailed);
+      } catch (e) {
+        console.log("Error cargando lista");
+      }
     };
 
     fetchList();
   }, []);
 
+  const filtered = list.filter((p) =>
+    p.name.includes(filter.toLowerCase())
+  );
+
   return (
-    <div className="grid">
-      {pokemons.map(p => (
-        <div key={p.id} className="pokemon-item">
-          <img src={p.sprites.front_default} alt={p.name} />
-          <p>{p.name}</p>
-        </div>
-      ))}
+    <div>
+      <input
+        type="text"
+        placeholder="Filtrar por nombre"
+        value={filter}
+        onChange={(e) => setFilter(e.target.value)}
+      />
+
+      <div className="pokemon-grid">
+        {filtered.map((p) => (
+          <div key={p.id} className="pokemon-item">
+            <img
+              src={p.sprites.front_default}
+              alt={p.name}
+            />
+            <p>{p.name}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

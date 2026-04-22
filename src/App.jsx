@@ -22,7 +22,7 @@ function App() {
     try {
       const data = await getPokemon(query);
       setPokemon(data);
-    } catch {
+    } catch (e) {
       setError("No se encontró el Pokémon");
     }
 
@@ -31,8 +31,6 @@ function App() {
 
   return (
     <div className="app">
-
-      {/* IZQUIERDA - POKEDEX */}
       <div className="pokedex-panel">
         <h1>Mini Pokédex</h1>
 
@@ -45,12 +43,10 @@ function App() {
         </div>
       </div>
 
-      {/* DERECHA - LISTA */}
       <div className="list-panel">
         <h2>Lista de Pokémon</h2>
         <PokemonList />
       </div>
-
     </div>
   );
 }

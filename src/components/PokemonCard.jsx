@@ -1,13 +1,20 @@
 function PokemonCard({ pokemon }) {
   return (
-    <div style={{ textAlign: "center" }}>
-      <h2 style={{ textTransform: "capitalize" }}>{pokemon.name}</h2>
+    <div>
+      <h3>{pokemon.name}</h3>
 
-      <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+      <img
+        src={pokemon.sprites.front_default}
+        alt={pokemon.name}
+      />
 
-      <p><strong>Tipo:</strong> {pokemon.types.map(t => t.type.name).join(", ")}</p>
-      <p><strong>Peso:</strong> {pokemon.weight}</p>
-      <p><strong>Altura:</strong> {pokemon.height}</p>
+      <p>Altura: {pokemon.height}</p>
+      <p>Peso: {pokemon.weight}</p>
+
+      <p>
+        Tipos:{" "}
+        {pokemon.types.map((t) => t.type.name).join(", ")}
+      </p>
     </div>
   );
 }
